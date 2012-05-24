@@ -34,7 +34,7 @@ public class MapViewActivity extends Activity {
        
         // Initialize our map and pin images and decode them to bitmaps.  Once they are
         // bitmapped, they can be passed to either "resMap" or "dropPin"
-        Bitmap mapImage = BitmapFactory.decodeResource(getResources(), R.drawable.campus_map);
+        Bitmap mapImage = BitmapFactory.decodeResource(getResources(), R.drawable.campus_map_75);
         Bitmap pinImage = BitmapFactory.decodeResource(getResources(), R.drawable.map_pin);
         
         
