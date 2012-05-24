@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DragonMap</string>
+    <string name="main_no_items">No items</string> 
+    <color name="pale_blue">#FF88ABDD</color>
+    <color name="gray_font">#FF343434</color>
+</resources>
