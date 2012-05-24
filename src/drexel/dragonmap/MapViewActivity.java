@@ -1,5 +1,6 @@
 package drexel.dragonmap;
 
+
 /*
  * This is the main Map Activity of the DragonMap app. It permits
  * the user to scroll around and zoom and stuff. It extends the
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,15 +32,13 @@ public class MapViewActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        
-        //load up our custom MapView
-        MapView img = new MapView(this);
+        // Initialize our map and pin images and decode them to bitmaps.  Once they are
+        // bitmapped, they can be passed to either "resMap" or "dropPin"
         Bitmap mapImage = BitmapFactory.decodeResource(getResources(), R.drawable.campus_map);
-        img.setImageBitmap(mapImage);
-        img.setMaxZoom(4f);
+        Bitmap pinImage = BitmapFactory.decodeResource(getResources(), R.drawable.map_pin);
         
         
-        
-        setContentView(img);
+        resMap(mapImage);
         
         /*this is called a singleton. It only works if everything is operating
         in the same thread, I think. Android guarantees this, so no worries.
@@ -65,7 +65,14 @@ public class MapViewActivity extends Activity {
         	POI myPOI = DBAccessor.getInstance().getData().getPOIByName(POIName);
             double targetX = myPOI.getX() + ( myPOI.getWidth() / 2 );
             double targetY = myPOI.getY() + ( myPOI.getHeight() / 2 );
-            //doSomething(myPOI, targetX, targetY)
+            
+            /* 
+             * NOTE -- targetX and targetY have been cast to floats because 
+             * drawBitmap (used in getBitmapOverlay) requires floats, and it's
+             * a bitch to change them later.  Not sure if this will cause problems
+             * but I don't think it will.
+             */
+            dropPin(mapImage,pinImage,(float)targetX,(float)targetY);
             
         }
     }
@@ -102,5 +109,52 @@ public class MapViewActivity extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    
+    
+    /*
+     * Added 5/23/12
+     * By Mark
+     * Resolve map functionality
+     * Drop pin functionality
+     * BitmapOverlay functionality
+     */
+    // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview
+    public void resMap (Bitmap mapImg) {
+    	// Initialize a MapView object from our map bitmap
+    	MapView img = new MapView(this);
+    	
+    	// Make it the current view
+        img.setImageBitmap(mapImg);
+        img.setMaxZoom(4f);
+        setContentView(img);
+    }
+    
+    // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview
+    public void dropPin (Bitmap mapImg, Bitmap pinImg, float left, float top) {
+    	// Initialize a MapView and merge the map and pin
+    	MapView img = new MapView(this);    	
+    	Bitmap mapPinImage = getBitmapOverlay(mapImg,pinImg,left,top);
+    	
+    	// Update the current view with the new bitmap
+        img.setImageBitmap(mapPinImage);
+        img.setMaxZoom(4f);
+        setContentView(img);
+    }
+    
+    // Take two bitmaps and overlay bmp2 at (left,top) on bmp1
+    public static Bitmap getBitmapOverlay(Bitmap bmp1, Bitmap bmp2, float left, float top) {
+        // Create a NEW bitmap and make a canvas out of it
+    	Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(),  bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);    
+        // Draw bmp1 (map) onto the canvas
+        canvas.drawBitmap(bmp1, 0, 0, null);
+        // Convert the "left" and "top" values from percentages to points
+        // and adjust the pin so the tip is on the given point
+        left = (left * bmp1.getWidth()) - (bmp2.getWidth()/2);
+        top = (top * bmp1.getHeight()) - (bmp2.getHeight());
+        // Draw bmp 2 (pin) onto the canvas at (left,top) and return
+        canvas.drawBitmap(bmp2, left, top, null);
+        return bmOverlay;
     }
 }

@@ -1,8 +1,9 @@
+package drexel.dragonmap;
 /*
 	updated from Mark's week 6 code
  */
 
-package drexel.dragonmap;
+
 
 /* This is Mark's code, and as such, I am
  * full unqualified to comment on it :-) 
@@ -165,6 +166,7 @@ public class MapView extends ImageView {
     public void performClick(float x, float y)
     {
     	//must be final so it can be accessed inside of the onClick methods below
+    	// Drew, what is this line?  Is this what's stopping the click from working?
     	final POI clicked = DBAccessor.getInstance().getData().getFirstContained(x, y);
     	if (clicked == null)
     	{

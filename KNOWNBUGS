@@ -1,0 +1,11 @@
+2.0.2
+	- MapViewActivity.java - Line 74/141  (Mark)
+		App crashes when attempting to set multiple content views
+		(i.e.: When setContentView(img) is called multiple times,
+		it seems to cause problems.  I think the fix is to "clean"
+		the current content view)
+		
+	- detailedview.xml - <LinearLayout>   (Mark)
+		Something in here causes the view to not scroll.  Also
+		let's make the page look nicer.  Other than that, I like!
+	

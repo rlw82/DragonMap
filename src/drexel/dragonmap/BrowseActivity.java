@@ -1,3 +1,4 @@
+package drexel.dragonmap;
 /*
  * Copyright (C) 2007 The Android Open Source Project
  *
@@ -14,7 +15,7 @@
  * limitations under the License.
  */
 
-package drexel.dragonmap;
+
 
 import drexel.dragonmap.R;
 
@@ -58,7 +59,7 @@ public class BrowseActivity extends ExpandableListActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         menu.setHeaderTitle("Menu Options");
-        menu.setHeaderIcon(R.drawable.icon);
+        menu.setHeaderIcon(R.drawable.icon_small);
         menu.add(0, SHOW_ON_MAP, SHOW_ON_MAP, "Show on Map");            //0
         menu.add(0, VIEW_FULL_INFO, VIEW_FULL_INFO, "View full info");   //1
     }

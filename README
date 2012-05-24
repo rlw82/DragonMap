@@ -1,0 +1,13 @@
+
+CHANGES FROM 2.0.1
+ -- Changes made by Mark
+ 	Added pin-drop functionality as well as bitmapOverlay functionality
+ 	Updated Drew's pin because it was hard to see
+ 	Resized the POI info icon so it's not so damn huge
+ 	
+
+
+CHANGES FROM 2.0
+
+....this one actually compiles.
+HOORAY!!
