@@ -17,35 +17,25 @@ package drexel.dragonmap;
 
 
 
-import drexel.dragonmap.R;
-
+import android.app.AlertDialog;
 import android.app.ExpandableListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
 
-/**
- * Demonstrates expandable lists using a custom {@link ExpandableListAdapter}
- * from {@link BaseExpandableListAdapter}.
- */
+
 public class BrowseActivity extends ExpandableListActivity {
 
     ExpandableListAdapter mAdapter;
-    //order of buttons in popup window
-    public static int SHOW_ON_MAP = 0;
-    public static int VIEW_FULL_INFO = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,51 +43,45 @@ public class BrowseActivity extends ExpandableListActivity {
         // Set up our adapter
         mAdapter = new MyExpandableListAdapter();
         setListAdapter(mAdapter);
-        registerForContextMenu(getExpandableListView());
+        getExpandableListView().setOnChildClickListener(this);
     }
-
+    
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("Menu Options");
-        menu.setHeaderIcon(R.drawable.icon_small);
-        menu.add(0, SHOW_ON_MAP, SHOW_ON_MAP, "Show on Map");            //0
-        menu.add(0, VIEW_FULL_INFO, VIEW_FULL_INFO, "View full info");   //1
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item.getMenuInfo();
-
-        int type = ExpandableListView.getPackedPositionType(info.packedPosition);
-        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
-            int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition); 
-            int childPos = ExpandableListView.getPackedPositionChild(info.packedPosition); 
-            String selected = (String) mAdapter.getChild(groupPos, childPos);
-            
-            int selection = item.getItemId();
-            
-            if (selection == SHOW_ON_MAP)
-            {
-		    	Intent myIntent = new Intent(BrowseActivity.this, MapViewActivity.class);
-		    	myIntent.putExtra("POI", selected);
-		        BrowseActivity.this.startActivity(myIntent);
-            }
-            else if (selection == VIEW_FULL_INFO)
-            {
-            	//pass the POI to the DetailedViewActivity screen!
-            	Intent myIntent = new Intent(BrowseActivity.this, DetailedViewActivity.class);
+	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
+    {
+        final String selected = (String) mAdapter.getChild(groupPosition, childPosition);
+        AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
+        alertDialog.setTitle(selected);
+        //this is hilarious and subject to change
+        alertDialog.setMessage("Whatchu wanna do?");
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "View Info", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+   				Intent myIntent = new Intent(BrowseActivity.this, DetailedViewActivity.class);
+   				//send over the POI name
                 myIntent.putExtra("POI", selected);
                 BrowseActivity.this.startActivity(myIntent);
-            }
-            return true;
-        } else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
-        	//clicked a category, ignore it
-            return true;
-        }
-
-        return false;
+			}
+		});
+        alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "View on Map", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+   				Intent myIntent = new Intent(BrowseActivity.this, MapViewActivity.class);
+   				//send over the POI name
+                myIntent.putExtra("POI", selected);
+                BrowseActivity.this.startActivity(myIntent);
+			}
+		});
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Close", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				//do nothing
+				//i wonder if i can make the onClickListener null
+				//NullPointerException? who knows
+			}
+		});
+        alertDialog.show();	
+        
+        return true;
     }
-
+    
     /**
      * A simple adapter which maintains an ArrayList of photo resource Ids. 
      * Each photo is displayed as an image. This adapter supports clearing the
