@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget0"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu" >
+
+<Button
+    android:id="@+id/about"
+    android:layout_width="256dp"
+    android:layout_height="wrap_content"
+    android:layout_x="41dp"
+    android:layout_y="360dp"
+    android:text="About"> 
+    </Button>
+
+<Button
+    android:id="@+id/search"
+    android:layout_width="256dp"
+    android:layout_height="wrap_content"
+    android:layout_x="41dp"
+    android:layout_y="305dp"
+    android:text="Search"> 
+    </Button>
+<Button
+    android:id="@+id/directory"
+    android:layout_width="256dp"
+    android:layout_height="wrap_content"
+    android:layout_x="41dp"
+    android:layout_y="252dp"
+    android:text="Directory Listing"> 
+    </Button>
+<Button
+    android:id="@+id/view_map"
+    android:layout_width="256dp"
+    android:layout_height="wrap_content"
+    android:layout_x="41dp"
+    android:layout_y="198dp"
+    android:text="View Map" > 
+    </Button>
+</AbsoluteLayout>
