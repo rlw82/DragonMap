@@ -8,3 +8,5 @@ TODO:
 	Commenting!!!
 	Make a huge list of POIs from JSON
 	Placing a pin on the map at specific coordinated
+
+Russell, you are a bum.
