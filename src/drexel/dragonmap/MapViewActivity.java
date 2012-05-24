@@ -30,7 +30,8 @@ public class MapViewActivity extends Activity {
 	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        
+    	super.onCreate(savedInstanceState);
        
         // Initialize our map and pin images and decode them to bitmaps.  Once they are
         // bitmapped, they can be passed to either "resMap" or "dropPin"
