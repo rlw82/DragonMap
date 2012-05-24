@@ -10,3 +10,4 @@ TODO:
 	Placing a pin on the map at specific coordinated
 
 Russell, you are a bum.
+Russell, you were doin it rong the hole time gosh why did we let you into our group?
