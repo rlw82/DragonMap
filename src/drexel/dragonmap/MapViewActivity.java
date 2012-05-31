@@ -58,7 +58,7 @@ public class MapViewActivity extends Activity {
             /* 
              * NOTE -- targetX and targetY have been cast to floats because 
              * drawBitmap (used in getBitmapOverlay) requires floats, and it's
-             * a bitch to change them later.  Not sure if this will cause problems
+             * a hassle to change them later.  Not sure if this will cause problems
              * but I don't think it will.
              */
             dropPin(mapImage,pinImage,(float)targetX,(float)targetY);
