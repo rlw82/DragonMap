@@ -4,72 +4,93 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:background="#FF0049b2">
+
+		<RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="367dp"
+		    android:background="@drawable/bluefade"
+		    android:orientation="vertical" >
+		
+		    <TextView
+		        android:id="@+id/POITitle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="25dp"
+		        android:layout_marginBottom="20dp"
+		        android:layout_centerHorizontal="true"
+		        android:background="@drawable/roundedrectnoborder"
+		        android:textColor="@color/gray_font"
+		        android:padding="10dp"
+		        android:text="POI NAME HERE"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textStyle="bold"/>
+		    
+		    <ImageView
+		        android:id="@+id/HR1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="2dip"
+		        android:layout_below="@+id/POITitle"
+		        android:layout_marginTop="20dp"
+		        android:layout_marginBottom="20dp"
+		        android:background="#909090" />
+		    		
+			<TextView
+			    android:id="@+id/POIAddress"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:gravity="center_horizontal"
+			    android:layout_below="@id/HR1"
+			    android:paddingLeft="10dp"
+			    android:paddingRight="10dp"
+			    android:text="Address"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+		    <TextView
+		        android:id="@+id/POIDescription"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/POIAddress"
+		        android:paddingTop="20dp"
+		        android:paddingLeft="10dp"
+		        android:paddingRight="10dp"
+		        android:text="Description"
+		        android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+		    <TextView
+		        android:id="@+id/POIKeywords"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/POIDescription"
+		        android:paddingTop="20dp"
+		        android:paddingLeft="10dp"
+		        android:paddingRight="10dp"
+		        android:text="Keywords"
+		        android:textAppearance="?android:attr/textAppearanceMedium" />
+		    
+		    <ImageView
+		        android:id="@+id/HR2"
+		        android:layout_width="fill_parent"
+		        android:layout_height="2dip"
+		        android:layout_below="@+id/POIKeywords"
+		        android:layout_marginTop="20dp"
+		        android:background="#909090" />
+				
+		    <Button
+		        android:id="@+id/viewOnMapButton"
+		        android:layout_width="256dp"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/HR2"
+		        android:text="@string/view_on_map"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="20dp"
+		        android:padding="15dp"
+		        android:background="@drawable/roundedrectnoborder"
+		        android:textSize="15sp"
+		        />
 
-        
-<LinearLayout 
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg"
-    >
-
-    <TextView
-        android:id="@+id/POITitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/roundedrectnoborder"
-        android:textColor="@color/gray_font"
-        android:padding="10dp"
-        android:text="POI NAME HERE"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"/>
-    
-	<TextView
-	    android:id="@+id/POIAddress"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:gravity="center_horizontal"
-	    android:paddingTop="20dp"
-	    android:paddingLeft="10dp"
-	    android:paddingRight="10dp"
-	    android:text="Address"
-	    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/POIDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="Description"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/POIKeywords"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="Keywords"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/viewOnMapButton"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:padding="15dp"
-        android:background="@drawable/roundedrect"
-        android:text="View on Map   >" />
-        
-</LinearLayout>
+		        
+		</RelativeLayout>
 
 </ScrollView>
