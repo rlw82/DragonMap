@@ -177,7 +177,7 @@ public class MapView extends ImageView {
     	{
             AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
             alertDialog.setTitle(clicked.getName());
-            alertDialog.setIcon(R.drawable.icon_small);
+            alertDialog.setIcon(R.drawable.pin);
             alertDialog.setMessage("What would you like to do?");
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "View Info", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which) {
