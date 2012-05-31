@@ -22,6 +22,7 @@ import android.app.ExpandableListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +97,7 @@ public class BrowseActivity extends ExpandableListActivity {
         public MyExpandableListAdapter()
         {
         	POIList POIs = DBAccessor.getInstance().getData();
+        	Log.d("u", POIs.getList().get(0).toString());
         	groups = POIs.getCategories();
         	children = POIs.getChildren();
         }
