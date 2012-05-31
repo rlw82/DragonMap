@@ -42,7 +42,7 @@ public class MapView extends ImageView {
     float redundantXSpace, redundantYSpace;
     
     float width, height;
-    static final int CLICK = 3;
+    static final int CLICK = 5;
     float saveScale = 1f;
     float right, bottom, origWidth, origHeight, bmWidth, bmHeight;
     
@@ -177,8 +177,8 @@ public class MapView extends ImageView {
     	{
             AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
             alertDialog.setTitle(clicked.getName());
-            //this is hilarious and subject to change
-            alertDialog.setMessage("Whatchu wanna do?");
+            alertDialog.setIcon(R.drawable.icon_small);
+            alertDialog.setMessage("What would you like to do?");
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "View Info", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which) {
        				Intent myIntent = new Intent(getContext(), DetailedViewActivity.class);
