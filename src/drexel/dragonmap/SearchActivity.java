@@ -55,9 +55,8 @@ public class SearchActivity extends ListActivity
 		final String name = matched_.get(position).getName();
 		AlertDialog alertDialog = new AlertDialog.Builder(SearchActivity.this).create();
 		alertDialog.setTitle(name);
-		alertDialog.setIcon(R.drawable.icon);
-		//this is hilarious and subject to change
-		alertDialog.setMessage("Whatchu wanna do?");
+		alertDialog.setIcon(R.drawable.icon_small);
+		alertDialog.setMessage("What would you like to do?");
 		alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "View Info", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which)
 			{
