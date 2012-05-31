@@ -68,7 +68,7 @@ public class MenuActivity extends Activity
         //NOTE: This initialization should be done in the MAIN activity. Currently
         //this is MapViewActivity, but when Russel gets the mainmenu working, we
         //should migrate it over there!
-        dba.setData(new POIList("out.txt", getAssets()));
+        dba.setData(new POIList("db.dat", getAssets()));
         dba.setMap(mapImage);
         dba.setPin(pinImage);
 	}
