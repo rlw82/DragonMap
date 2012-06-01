@@ -3,6 +3,6 @@
     <string name="app_name">DragonMap</string>
     <string name="main_no_items">No items</string>
     <string name="view_on_map">View it on the map</string> 
-    <color name="pale_blue">#FF88ABDD</color>
+    <color name="pale_blue">#FF84a3e1</color>
     <color name="gray_font">#FF343434</color>
 </resources>

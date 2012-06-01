@@ -5,13 +5,14 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="#FF0049b2"
+        android:background="#FF001a5e"
         android:paddingBottom="20dp">
 
 		<RelativeLayout
 		    android:layout_width="fill_parent"
-		    android:layout_height="367dp"
+		    android:layout_height="wrap_content"
 		    android:orientation="vertical"
+		    android:background="@drawable/bluefade"
 		    android:layout_marginBottom="20dp">
 		
 		    <TextView
@@ -83,11 +84,26 @@
 				
 		    <Button
 		        android:id="@+id/viewOnMapButton"
-		        android:layout_width="256dp"
+		        android:layout_width="140dp"
 		        android:layout_height="wrap_content"
 		        android:layout_below="@id/HR2"
-		        android:text="@string/view_on_map"
-		        android:layout_centerHorizontal="true"
+		        android:text="View This On The Map"
+		        android:layout_marginTop="20dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="20dp"
+		        android:padding="15dp"
+		        
+		        android:background="@drawable/roundedrectnoborder"
+		        android:textSize="15sp"
+		        />
+		    
+		    <Button
+		        android:id="@+id/viewFloorsButton"
+		        android:layout_width="140dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBaseline="@id/viewOnMapButton"
+		        android:layout_toRightOf="@id/viewOnMapButton"
+		        android:text="View Floor Plans"
 		        android:layout_marginTop="20dp"
 		        android:padding="15dp"
 		        android:background="@drawable/roundedrectnoborder"

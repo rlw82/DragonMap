@@ -44,5 +44,14 @@ public class DetailedViewActivity extends Activity {
                 DetailedViewActivity.this.startActivity(myIntent);
             }
         });
+        
+        Button viewFloors = (Button) findViewById(R.id.viewFloorsButton);
+        viewFloors.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent myIntent = new Intent(DetailedViewActivity.this, FloorPlanActivity.class);
+            	myIntent.putExtra("POI", POIName);
+                DetailedViewActivity.this.startActivity(myIntent);
+            }
+        });
     }
 }

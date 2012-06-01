@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FF001a5e"
+    android:orientation="vertical">
+    
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/fade">
+
+	<TextView 
+	    android:id="@+id/floor_title"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="POI Name Here"
+	    android:textColor="#FFFFFFFF"
+	    android:gravity="center"
+	    android:textSize="22dip"
+	    android:layout_marginBottom="10dip"
+	    android:padding="10dip"
+	    android:background="@color/pale_blue"/>
+	    
+    <Gallery
+        android:id="@+id/gallery"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/floor_title"
+		android:layout_marginBottom="10dip"
+        />
+    
+    <ImageView 
+        android:id="@+id/floor_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gallery"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"/>
+    
+    <TextView 
+	    android:id="@+id/floor_label"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Floor 1 of 6"
+	    android:textColor="#FFFFFFFF"
+	    android:gravity="center"
+	    android:textSize="22dip"
+	    android:layout_marginBottom="0dip"
+	    android:layout_below="@id/floor_view"/>
+    
+    
+	</RelativeLayout>
+	
+</ScrollView>
