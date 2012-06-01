@@ -34,7 +34,7 @@
 		    android:layout_below="@id/menu_logo"
 		    android:layout_marginBottom="20dip"
 		    android:background="@drawable/roundedrectnoborder"
-		    android:textSize="20sp"
+		    android:textSize="18sp"
 			/>
 		
 		
@@ -47,7 +47,7 @@
 		    android:layout_below="@id/view_map"
 		    android:layout_marginBottom="20dip"
 		    android:background="@drawable/roundedrectnoborder"
-		    android:textSize="20sp"
+		    android:textSize="18sp"
 		    />
 		
 		<Button
@@ -59,7 +59,7 @@
 		    android:layout_below="@id/search"
 		    android:layout_marginBottom="20dip"
 		    android:background="@drawable/roundedrectnoborder"
-		    android:textSize="20sp"
+		    android:textSize="18sp"
 		    />
 		
 		<Button
@@ -71,7 +71,7 @@
 		    android:layout_below="@id/directory"
 		    android:background="@drawable/roundedrectnoborder"
 		    android:textSize="20sp"
-		    android:layout_marginBottom="20dip"
+		    android:layout_marginBottom="18dip"
 		    />
 		
 		<TextView 

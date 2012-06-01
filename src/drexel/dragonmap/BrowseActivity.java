@@ -53,8 +53,8 @@ public class BrowseActivity extends ExpandableListActivity {
         final String selected = (String) mAdapter.getChild(groupPosition, childPosition);
         AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
         alertDialog.setTitle(selected);
-        //this is hilarious and subject to change
-        alertDialog.setMessage("Whatchu wanna do?");
+        alertDialog.setIcon(R.drawable.pin);
+		alertDialog.setMessage("What would you like to do?");
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "View Info", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
    				Intent myIntent = new Intent(BrowseActivity.this, DetailedViewActivity.class);
@@ -97,7 +97,6 @@ public class BrowseActivity extends ExpandableListActivity {
         public MyExpandableListAdapter()
         {
         	POIList POIs = DBAccessor.getInstance().getData();
-        	Log.d("u", POIs.getList().get(0).toString());
         	groups = POIs.getCategories();
         	children = POIs.getChildren();
         }

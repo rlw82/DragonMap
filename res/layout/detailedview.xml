@@ -5,12 +5,12 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="#FF0049b2">
+        android:background="#FF0049b2"
+        android:paddingBottom="20dp">
 
 		<RelativeLayout
 		    android:layout_width="fill_parent"
 		    android:layout_height="367dp"
-		    android:background="@drawable/bluefade"
 		    android:orientation="vertical"
 		    android:layout_marginBottom="20dp">
 		
@@ -20,11 +20,14 @@
 		        android:layout_height="wrap_content"
 		        android:layout_marginTop="25dp"
 		        android:layout_marginBottom="20dp"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginRight="15dp"
 		        android:layout_centerHorizontal="true"
 		        android:background="@drawable/roundedrectnoborder"
 		        android:textColor="@color/gray_font"
 		        android:padding="10dp"
-		        android:text="POI NAME HERE"
+		        android:text="POI"
+		        android:gravity="center_horizontal"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		        android:textStyle="bold"/>
 		    
