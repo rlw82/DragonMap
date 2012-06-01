@@ -16,9 +16,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 
 public class MapViewActivity extends Activity {
 
@@ -33,30 +35,18 @@ public class MapViewActivity extends Activity {
         
     	super.onCreate(savedInstanceState);
        
-        // Initialize our map and pin images and decode them to bitmaps.  Once they are
-        // bitmapped, they can be passed to either "resMap" or "dropPin"
-        Bitmap mapImage = BitmapFactory.decodeResource(getResources(), R.drawable.campus_map_75);
-        Bitmap pinImage = BitmapFactory.decodeResource(getResources(), R.drawable.map_pin);
+
+        //people say you shouldn't do this, but it's the only way to force
+        //java to delete the now-out-of-scope Bitmaps from before to make
+        //room for the new ones
+        System.gc();
         
+        //these are references, so we can repeatedly call this and it 
+        //shouldn't chew up too much memory!
+        Bitmap mapImage = DBAccessor.getInstance().getMap();
+        Bitmap pinImage = DBAccessor.getInstance().getPin();
         
         resMap(mapImage);
-        
-        /*this is called a singleton. It only works if everything is operating
-        in the same thread, I think. Android guarantees this, so no worries.
-        It's cool because it lets us set the data here and access it statically from
-        any other class/activity in the project! This is useful because now we only
-        have to parse the out.txt file once, instead of every time the user searches.
-        
-        The syntax is DBAccessor.getInstance().getData() to get the POIList
-        and DBAccessor.getInstance().setData(data) to set the POIList
-        */
-        
-        DBAccessor dba = DBAccessor.getInstance();
-        //create our database
-        //NOTE: This initialization should be done in the MAIN activity. Currently
-        //this is MapViewActivity, but when Russel gets the mainmenu working, we
-        //should migrate it over there!
-        dba.setData(new POIList("out.txt", getAssets()));
         
         String POIName = getIntent().getStringExtra("POI");
         //POIName is null if no intent was passed (ie. just show the map)
@@ -70,7 +60,7 @@ public class MapViewActivity extends Activity {
             /* 
              * NOTE -- targetX and targetY have been cast to floats because 
              * drawBitmap (used in getBitmapOverlay) requires floats, and it's
-             * a bitch to change them later.  Not sure if this will cause problems
+             * a hassle to change them later.  Not sure if this will cause problems
              * but I don't think it will.
              */
             dropPin(mapImage,pinImage,(float)targetX,(float)targetY);
@@ -129,6 +119,7 @@ public class MapViewActivity extends Activity {
         img.setImageBitmap(mapImg);
         img.setMaxZoom(4f);
         setContentView(img);
+        
     }
     
     // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview

@@ -1,4 +1,8 @@
 2.0.2
+	- "View on Map" (Mark)
+		App crashes when the POI it attempted to view on map.
+		Likely related to the bug below.
+
 	- MapViewActivity.java - Line 74/141  (Mark)
 		App crashes when attempting to set multiple content views
 		(i.e.: When setContentView(img) is called multiple times,
