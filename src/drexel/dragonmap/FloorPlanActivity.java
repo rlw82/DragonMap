@@ -62,7 +62,6 @@ public class FloorPlanActivity extends Activity
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.BELOW, R.id.floor_label);
-        //lp.setMargins(0, 0, 0, 20);
         lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         
         rl.addView(floorpic, lp);
