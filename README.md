@@ -1,16 +1,17 @@
+DragonMap
+----------
+   Because no one should ever get lost in Main again.
+   
+   
+DragonMap is an Android App that displays a map of Drexel's campus and the Points of Interest around campus. These include, but are not limited to, Drexel Academic Buildings, Athletic Areas, and Food.
 
-Woohoo! Gonna push to git!!!
+DragonMap is being actively developed by:
 
-Currently working: browse, search, click, pan, zoom
-TODO:
-	Main Menu (russell)
-	Bug fixing/exception checking/prettifying
-	Commenting!!!
-	Make a huge list of POIs from JSON
-	Placing a pin on the map at specific coordinated
+Mark Koh - Design / programming
+Drew Banin - Programming
+Russell Wiley - Programming
 
-Russell, you are a bum.
-Russell, you were doin it rong the hole time gosh why did we let you into our group?
-Russell number2
-Just testin some stuff out.
+Special thanks to:
 
+Professor William Mongan - Our advisor
+Drexel's Office of University Communications - Provided us with the Drexel Map
