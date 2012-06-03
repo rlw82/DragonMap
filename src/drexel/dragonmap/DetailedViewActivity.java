@@ -1,6 +1,6 @@
 package drexel.dragonmap;
 
-
+//TODO: only show button if floor plans are available
 
 import drexel.dragonmap.R;
 

@@ -8,6 +8,7 @@
     android:orientation="vertical">
     
 	<RelativeLayout
+	    android:id="@+id/floor_view"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@drawable/fade">
@@ -31,15 +32,7 @@
 		android:layout_below="@id/floor_title"
 		android:layout_marginBottom="10dip"
         />
-    
-    <ImageView 
-        android:id="@+id/floor_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/gallery"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"/>
+   
     
     <TextView 
 	    android:id="@+id/floor_label"
@@ -50,7 +43,7 @@
 	    android:gravity="center"
 	    android:textSize="22dip"
 	    android:layout_marginBottom="0dip"
-	    android:layout_below="@id/floor_view"/>
+	    android:layout_alignParentBottom="true" />
     
     
 	</RelativeLayout>

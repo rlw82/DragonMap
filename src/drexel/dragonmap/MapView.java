@@ -167,6 +167,9 @@ public class MapView extends ImageView {
     {
     	//must be final so it can be accessed inside of the onClick methods below
     	// Drew, what is this line?  Is this what's stopping the click from working?
+    	// Hey Mark! This line finds the first POI that contains the point (x, y) passed
+    	// to this method. There might be overlapping touch rectangles (though there 
+    	// shouldn't be). 
     	final POI clicked = DBAccessor.getInstance().getData().getFirstContained(x, y);
     	if (clicked == null)
     	{
@@ -273,6 +276,8 @@ public class MapView extends ImageView {
 	        
 	    }
 	}
+    
+    
     
     @Override
     protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec)

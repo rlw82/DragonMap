@@ -53,6 +53,7 @@ public class POI
 	private double x_;
 	private double y_;
 	private String category_;
+	private FloorList floorList_;
 	
 	/*
 	 * Constructor with all arguments given.
@@ -70,6 +71,7 @@ public class POI
 		this.y_ = y;
 		this.width_ = w;
 		this.height_ = h;
+		this.floorList_ = new FloorList();
 	}
 	
 	/*
@@ -86,6 +88,7 @@ public class POI
 		this.y_ = 0;
 		this.width_ = 0;
 		this.height_ = 0;
+		this.floorList_ = new FloorList();
 	}
 
 	
@@ -131,6 +134,22 @@ public class POI
 	public void setAddress(String address)
 	{
 		this.address_ = address;
+	}
+	
+	public void setFloorList(FloorList f)
+	{
+		this.floorList_ = f;
+	}
+	
+	
+	public FloorList getFloorList()
+	{
+		return this.floorList_;
+	}
+	
+	public boolean floorsLoaded()
+	{
+		return (this.floorList_.size() > 0);
 	}
 	
 	public void getCategory(String category)
