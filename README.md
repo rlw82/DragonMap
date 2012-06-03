@@ -1,4 +1,4 @@
-![DragonMap Logo](/res/drawable/menuicon.png)
+![DragonMap Logo](/rlw82/DragonMap/raw/master/res/drawable/menuicon.png)
 
 DragonMap
 ----------
