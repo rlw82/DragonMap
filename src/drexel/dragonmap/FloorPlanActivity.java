@@ -29,7 +29,7 @@ public class FloorPlanActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.floorplan);
+	    
 	    
 	    String POIName = getIntent().getStringExtra("POI");
 	    final POI myPOI = DBAccessor.getInstance().getData().getPOIByName(POIName);
@@ -67,7 +67,7 @@ public class FloorPlanActivity extends Activity
         rl.addView(floorpic, lp);
 
 	    
-	    
+        setContentView(R.layout.floorplan);
 	    
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id)
