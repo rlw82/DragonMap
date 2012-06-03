@@ -1,6 +1,8 @@
+![DragonMap Logo](/res/drawable/menuicon.png)
+
 DragonMap
 ----------
-   Because no one should ever get lost in Main again.
+*Because no one should ever get lost in Main again.*
    
    
 DragonMap is an Android App that displays a map of Drexel's campus and the Points of Interest around campus. These include, but are not limited to, Drexel Academic Buildings, Athletic Areas, and Food.
