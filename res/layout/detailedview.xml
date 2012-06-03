@@ -81,34 +81,42 @@
 		        android:layout_below="@+id/POIKeywords"
 		        android:layout_marginTop="20dp"
 		        android:background="#909090" />
-				
-		    <Button
-		        android:id="@+id/viewOnMapButton"
-		        android:layout_width="140dp"
+		
+		    <LinearLayout
+		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
 		        android:layout_below="@id/HR2"
-		        android:text="View This On The Map"
 		        android:layout_marginTop="20dp"
+		        android:layout_marginBottom="20dp"
 		        android:layout_marginLeft="10dp"
-		        android:layout_marginRight="20dp"
-		        android:padding="15dp"
-		        
-		        android:background="@drawable/roundedrectnoborder"
-		        android:textSize="15sp"
-		        />
+		        android:layout_marginRight="10dp">		
+			    <Button
+			        android:id="@+id/viewOnMapButton"
+			        android:layout_width="0dp"
+			        android:layout_weight="1"
+			        android:layout_height="wrap_content"
+			        android:text="View On Map"
+			        android:padding="15dp"
+			        android:layout_marginRight="10dp"
+			        android:background="@drawable/roundedrectnoborder"
+			        android:textSize="15sp"
+			        />
+			    
+	
+			    
+			    <Button
+			        android:id="@+id/viewFloorsButton"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:layout_weight="1"
+			        android:text="View Floor Plans"
+			        android:padding="15dp"
+			        android:background="@drawable/roundedrectnoborder"
+			        android:textSize="15sp"
+			        />
 		    
-		    <Button
-		        android:id="@+id/viewFloorsButton"
-		        android:layout_width="140dp"
-		        android:layout_height="wrap_content"
-		        android:layout_alignBaseline="@id/viewOnMapButton"
-		        android:layout_toRightOf="@id/viewOnMapButton"
-		        android:text="View Floor Plans"
-		        android:layout_marginTop="20dp"
-		        android:padding="15dp"
-		        android:background="@drawable/roundedrectnoborder"
-		        android:textSize="15sp"
-		        />
+		    </LinearLayout>
 
 		        
 		</RelativeLayout>

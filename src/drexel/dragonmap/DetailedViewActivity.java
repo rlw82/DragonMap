@@ -19,6 +19,7 @@ public class DetailedViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detailedview);
         final String POIName = getIntent().getStringExtra("POI"); //final for onClick below
+       
         
         POI myPOI = DBAccessor.getInstance().getData().getPOIByName(POIName); //whew
         
@@ -45,7 +46,17 @@ public class DetailedViewActivity extends Activity {
             }
         });
         
+        
         Button viewFloors = (Button) findViewById(R.id.viewFloorsButton);
+        
+        if (myPOI.getFloorList().size() == 0)
+        {
+        	//if there are no floors, don't let them press
+        	viewFloors.setVisibility(View.GONE);
+        }
+        else
+        {
+        
         viewFloors.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent myIntent = new Intent(DetailedViewActivity.this, FloorPlanActivity.class);
@@ -53,5 +64,6 @@ public class DetailedViewActivity extends Activity {
                 DetailedViewActivity.this.startActivity(myIntent);
             }
         });
+        }
     }
 }

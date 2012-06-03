@@ -55,6 +55,12 @@ public class MenuActivity extends Activity
 		search.setOnClickListener(searchButtonListener);
 		directory.setOnClickListener(directoryButtonListener);
 		view_map.setOnClickListener(mapButtonListener);
+		
+		
+		
+		Intent myIntent = new Intent(MenuActivity.this, FloorPlanActivity.class);
+    	myIntent.putExtra("POI", "Daskalakis Athletic Center");
+        MenuActivity.this.startActivity(myIntent);
 	}
 	
 

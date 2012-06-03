@@ -1,6 +1,5 @@
 package drexel.dragonmap;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -51,8 +50,8 @@ public class FloorPlanActivity extends Activity
 	    final MapView floorpic = new MapView( getApplicationContext() );
     	// Make it the current view
 	    
-	    Bitmap ugh = BitmapFactory.decodeResource(getResources(), R.drawable.dac1 );
-        floorpic.setImageBitmap( ugh );
+	    Bitmap first = (Bitmap)gallery.getAdapter().getItem(0);
+        floorpic.setImageBitmap( first );
         floorpic.setMaxZoom(4f);
         floorpic.setAdjustViewBounds(true);
         
@@ -61,7 +60,8 @@ public class FloorPlanActivity extends Activity
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.addRule(RelativeLayout.BELOW, R.id.gallery);
+        lp.addRule(RelativeLayout.BELOW, R.id.floor_label);
+        //lp.setMargins(0, 0, 0, 20);
         lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         
         rl.addView(floorpic, lp);
