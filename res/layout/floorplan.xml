@@ -46,18 +46,6 @@
 	    android:layout_marginBottom="10dp"
 	    android:background="@drawable/roundedrectnoborder"/>
    
-   <Button
-        android:id="@+id/enlargePlan"
-	    android:layout_width="256dp"
-	    android:layout_height="wrap_content"
-	    android:text="Enlarge Plan"
-	    android:layout_centerHorizontal="true"
-	    android:layout_below="@id/floor_label"
-	    android:layout_marginBottom="20dip"
-	    android:layout_marginTop="20dip"
-	    android:background="@drawable/roundedrectnoborder"
-	    android:textSize="15sp"
-		/>
     
     
 	</RelativeLayout>
