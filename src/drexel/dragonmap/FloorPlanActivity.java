@@ -7,6 +7,7 @@ import drexel.dragonmap.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -62,6 +64,7 @@ public class FloorPlanActivity extends Activity
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.BELOW, R.id.floor_label);
+        lp.addRule(RelativeLayout.ABOVE, R.id.enlargePlan);
         lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         
         rl.addView(floorpic, lp);
@@ -76,6 +79,17 @@ public class FloorPlanActivity extends Activity
 	        	floorpic.setImageBitmap( (Bitmap)gallery.getAdapter().getItem(position) );
 	        }
 	    });
+	    
+	    Button enlargePlan = (Button) findViewById(R.id.enlargePlan);
+	    
+	    enlargePlan.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent myIntent = new Intent(FloorPlanActivity.this, FloorPlanActivity.class);
+            	myIntent.putExtra("Floor", floorLabel.getText());
+                FloorPlanActivity.this.startActivity(myIntent);
+            }
+        });
+	    
 	}
 }
 
