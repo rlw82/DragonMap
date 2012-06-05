@@ -107,7 +107,30 @@ public class MapViewActivity extends Activity {
     }
     
     // The hack to end all hacks. Don't even try to understand it. It's impossible.
-    //TODO: explain this!
+    
+    /* Motivation for this hack:
+     * 	 We got a lot of OutOfMemory Errors because every time we opened a MapViewActivity
+     *   with an intent, we left the old ones floating around in memory.
+     * 
+     * How it works:
+     * 	 When the user reaches a DetailedViewActivity screen (either by pressing the POI
+     *   on the map, searching or through the directory) they are presented with an option
+     *   to view the POI on the map. When the user presses this button, all previous Activies
+     *   (with the exception of the MenuActivity) are closed. This is desirable because it
+     *   cleans up any activities that are floating around in memory. It is undesirable because
+     *   it also deletes the DetailedViewActivity. This is bad, because pressing BACK from the
+     *   map would now take the user to the main menu instead of to the last screen.
+     *   
+     * What this hack does:
+     * 	 So the issue is that the user needs to go to the last-visited POI DetailedViewActivity
+     *   if they press the back button on the map. That's exactly the process that is defined 
+     *   below.
+     *   
+     * Room for improvement:
+     * 	 Work out some way for the user to go back to the main menu. That's actually pretty
+     *   important. TODO!
+     */
+    
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
