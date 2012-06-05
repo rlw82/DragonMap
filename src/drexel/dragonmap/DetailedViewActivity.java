@@ -42,6 +42,7 @@ public class DetailedViewActivity extends Activity {
             public void onClick(View v) {
             	Intent myIntent = new Intent(DetailedViewActivity.this, MapViewActivity.class);
             	myIntent.putExtra("POI", POIName);
+            	myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DetailedViewActivity.this.startActivity(myIntent);
             }
         });

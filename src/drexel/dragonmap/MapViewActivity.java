@@ -11,19 +11,22 @@ package drexel.dragonmap;
 import drexel.dragonmap.R;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
 
 public class MapViewActivity extends Activity {
 
+	
+	private String currentPOI = null;
 	
 	/**
 	 * @param savedInstanceState This can contain an intent with the String name of a
@@ -51,6 +54,7 @@ public class MapViewActivity extends Activity {
         //POIName is null if no intent was passed (ie. just show the map)
         if (POIName != null)
         {
+        	currentPOI = POIName;
         	//pressed "view on map" thang, adjust accordingly
         	POI myPOI = DBAccessor.getInstance().getData().getPOIByName(POIName);
             double targetX = myPOI.getX() + ( myPOI.getWidth() / 2 );
@@ -65,6 +69,7 @@ public class MapViewActivity extends Activity {
             dropPin(mapImage,pinImage,(float)targetX,(float)targetY);
             
         }
+        
     }
     
     /*
@@ -101,6 +106,30 @@ public class MapViewActivity extends Activity {
         }
     }
     
+    // The hack to end all hacks. Don't even try to understand it. It's impossible.
+    //TODO: explain this!
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    
+    @Override
+    public void onBackPressed()
+    {
+    	if (currentPOI != null)
+        {
+            Intent myIntent = new Intent(MapViewActivity.this, DetailedViewActivity.class);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            myIntent.putExtra("POI", currentPOI);
+        	MapViewActivity.this.startActivity(myIntent);
+        }
+    }
+    
+    // end hackish, terrible code
     
     /*
      * Added 5/23/12
@@ -118,7 +147,6 @@ public class MapViewActivity extends Activity {
         img.setImageBitmap(mapImg);
         img.setMaxZoom(4f);
         setContentView(img);
-        
     }
     
     // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview

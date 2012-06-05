@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:background="#FF001a5e"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        android:fadingEdge="none">
 
 		<RelativeLayout
 		    android:layout_width="fill_parent"

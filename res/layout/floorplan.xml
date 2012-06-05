@@ -5,7 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#FF001a5e"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fadingEdge="none">
     
 	<RelativeLayout
 	    android:id="@+id/floor_view"

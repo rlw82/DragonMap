@@ -66,9 +66,6 @@ public class FloorPlanActivity extends Activity
         
         rl.addView(floorpic, lp);
 
-	    
-        
-	    
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id)
 	        {
