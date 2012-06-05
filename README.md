@@ -11,7 +11,7 @@ Features include the ability to search for Points of Interest, a directory of al
 
 DragonMap is being actively developed by:
 
-     Mark Koh - Design, Programming
+     Mark Koh - Programming, Design
 
      Drew Banin - Programming, R & D
 
