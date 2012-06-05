@@ -39,7 +39,7 @@ public class MapViewActivity extends Activity {
         //people say you shouldn't do this, but it's the only way to force
         //java to delete the now-out-of-scope Bitmaps from before to make
         //room for the new ones
-        System.gc();
+        // System.gc(); //removed to re-fix outofmemoryerror
         
         //these are references, so we can repeatedly call this and it 
         //shouldn't chew up too much memory!

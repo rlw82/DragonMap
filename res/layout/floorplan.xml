@@ -8,49 +8,44 @@
     android:orientation="vertical">
     
 	<RelativeLayout
+	    android:id="@+id/floor_view"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@drawable/fade">
 
 	<TextView 
 	    android:id="@+id/floor_title"
-	    android:layout_width="fill_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="POI Name Here"
 	    android:textColor="#FFFFFFFF"
-	    android:gravity="center"
-	    android:textSize="22dip"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="20dp"
+	    android:textSize="22sp"
 	    android:layout_marginBottom="10dip"
 	    android:padding="10dip"
-	    android:background="@color/pale_blue"/>
+	    android:background="@drawable/roundedrectnoborder"/>
 	    
     <Gallery
         android:id="@+id/gallery"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 		android:layout_below="@id/floor_title"
-		android:layout_marginBottom="10dip"
-        />
+		android:layout_marginBottom="10dip" />
     
-    <ImageView 
-        android:id="@+id/floor_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/gallery"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"/>
-    
-    <TextView 
+   <TextView 
 	    android:id="@+id/floor_label"
-	    android:layout_width="fill_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="Floor 1 of 6"
+	    android:text="Floor x of y"
 	    android:textColor="#FFFFFFFF"
-	    android:gravity="center"
-	    android:textSize="22dip"
-	    android:layout_marginBottom="0dip"
-	    android:layout_below="@id/floor_view"/>
+	    android:layout_centerHorizontal="true"
+	    android:textSize="14sp"
+	    android:padding="5dp"
+	    android:layout_below="@id/gallery"
+	    android:layout_marginBottom="10dp"
+	    android:background="@drawable/roundedrectnoborder"/>
+   
     
     
 	</RelativeLayout>

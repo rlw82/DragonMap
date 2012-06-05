@@ -3,6 +3,7 @@ package drexel.dragonmap;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.res.AssetManager;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class POIList
 	{
 		this();
 		load(fname, assets);
+		genFloorPlans(assets);
 		
 		parseData();
 	}
@@ -33,6 +35,7 @@ public class POIList
 		return list_;
 	}
 	
+	//TODO: handle error in a better way!
 	public void load(String fname, AssetManager assets)
 	{
 		try
@@ -48,13 +51,72 @@ public class POIList
 			for (String line: lines)
 			{
 				POI newObj = new POI();
-				newObj.fromJSON(line);
+				newObj.fromJSON(line);				
 				list_.add(newObj);
 			}
 		}
 		catch (IOException e)
 		{
 			Log.e("poilist", e.toString());
+		}
+	}
+	
+	public void genFloorPlans(AssetManager assets)
+	{
+		try
+		{
+			String[] buildings = assets.list("floor_plans");
+			
+			for (String building: buildings)
+			{
+				String dir = "floor_plans/" + building; 
+				String[] floorImages = assets.list(dir);
+				String POIName = null;
+				InputStream is = assets.open(dir + "/ref.txt");
+				try
+				{
+					int size = is.available(); 
+					byte[] buffer = new byte[size]; 
+					is.read(buffer); 
+					POIName = new String(buffer); 
+				}
+				catch (IOException e)
+				{
+					//couldn't open reference file, just ignore it
+					//(not a floor plan directory)
+					continue;
+				}
+				finally
+				{
+					is.close(); 
+				}
+				//POIName is our POI's ID
+				//floorImages is a list of image files
+				POI myPOI = this.getPOIByName(POIName);
+				
+				FloorList myFloorList = new FloorList();
+				for (String img: floorImages)
+				{
+					try
+					{
+						Floor newFloor = new Floor();
+						newFloor.setFloorNum( Integer.parseInt( img.split("\\.")[0] ) );
+						newFloor.setImageSrc(dir + "/" + img);
+						myFloorList.addFloor( newFloor );
+					}
+					catch (NumberFormatException e)
+					{
+						// file is not [num].ext, so we'll ignore it
+						continue;
+					}
+				}
+				myPOI.setFloorList(myFloorList);
+			}
+		}
+		catch (IOException e)
+		{
+			//
+			Log.e("floorplans", e.toString());
 		}
 	}
 	

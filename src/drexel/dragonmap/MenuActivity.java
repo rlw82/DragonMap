@@ -1,14 +1,22 @@
 //Hey look something with my name on it -Russell #LOL #PUNK #GETAREALJOB
 package drexel.dragonmap;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -27,14 +35,15 @@ public class MenuActivity extends Activity
 	 * 	Hitting the back-button to return to the MenuActivity does not call the
 	 *  onCreate method.
 	 */
-	
+
+
 	/** Called when the activity is first created.
 	 *  Creates all the buttons and assigns them listeners
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+		
 		initialize();
 		
 		setContentView(R.layout.menu);
@@ -59,11 +68,11 @@ public class MenuActivity extends Activity
 	{
 		// Initialize our map and pin images and decode them to bitmaps.  Once they are
         // bitmapped, they can be passed to either "resMap" or "dropPin"
-        Bitmap mapImage = BitmapFactory.decodeResource(getResources(), R.drawable.campus_map_75);
+        
+		Bitmap mapImage = BitmapFactory.decodeResource(getResources(), R.drawable.campus_small);
         Bitmap pinImage = BitmapFactory.decodeResource(getResources(), R.drawable.map_pin);
-        
-       
-        
+		
+	
         /*this is called a singleton. It only works if everything is operating
         in the same thread, I think. Android guarantees this, so no worries.
         It's cool because it lets us set the data here and access it statically from
@@ -76,10 +85,57 @@ public class MenuActivity extends Activity
         
         DBAccessor dba = DBAccessor.getInstance();
         //create our database
-        dba.setData(new POIList("db.dat", getAssets()));
+        POIList POIs = new POIList("db.dat", getAssets());
+        
+        dba.setData(POIs);
+
         dba.setMap(mapImage);
         dba.setPin(pinImage);
+        
+        
 	}
+	
+	
+	
+	public static int calculateInSampleSize( BitmapFactory.Options options, int reqWidth, int reqHeight )
+	{
+	    // Raw height and width of image
+	    final int height = options.outHeight;
+	    final int width = options.outWidth;
+	    int inSampleSize = 1;
+	
+	    if (height > reqHeight || width > reqWidth)
+	    {
+	        if (width > height)
+	        {
+	            inSampleSize = Math.round((float)height / (float)reqHeight);
+	        }
+	        else
+	        {
+	            inSampleSize = Math.round((float)width / (float)reqWidth);
+	        }
+	    }
+	    return inSampleSize;
+	}
+	
+	
+	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight)
+	{
+
+	    // First decode with inJustDecodeBounds=true to check dimensions
+	    final BitmapFactory.Options options = new BitmapFactory.Options();
+	    options.inJustDecodeBounds = true;
+	    BitmapFactory.decodeResource(res, resId, options);
+
+	    // Calculate inSampleSize
+	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+	    // Decode bitmap with inSampleSize set
+	    options.inJustDecodeBounds = false;
+	    return BitmapFactory.decodeResource(res, resId, options);
+	}
+	
+	
 
 	/**  Might have to be changed to a different type if multiple lines isn't supported
 	 *   but will display a short message with the option to close out when selected on the menu
