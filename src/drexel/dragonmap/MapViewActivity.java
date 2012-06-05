@@ -89,6 +89,7 @@ public class MapViewActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+    	Intent myIntent;
         switch (item.getItemId()) {
             case R.id.menuSearchButton:
             	//manually load the Search bar/activity
@@ -97,9 +98,19 @@ public class MapViewActivity extends Activity {
                 
             case R.id.menuListingButton:
             	//start the BrowseActivity class
-            	Intent myIntent = new Intent(MapViewActivity.this, BrowseActivity.class);
+            	myIntent = new Intent(MapViewActivity.this, BrowseActivity.class);
             	MapViewActivity.this.startActivity(myIntent);
                 return true;
+                
+            case R.id.mainMenuButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(MapViewActivity.this, MenuActivity.class);
+            	MapViewActivity.this.startActivity(myIntent);
+                return true;
+                
+            case R.id.aboutButton:
+            	//todo: put shit in here
+            	return true;
                 
             default:
                 return super.onOptionsItemSelected(item);

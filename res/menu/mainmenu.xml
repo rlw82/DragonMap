@@ -5,4 +5,8 @@
 	          android:title="Search" />
 	    <item android:id="@+id/menuListingButton"
 	          android:title="Directory"  />
+	    <item android:id="@+id/mainMenuButton"
+	          android:title="Main Menu" />
+	    <item android:id="@+id/aboutButton"
+	          android:title="About" />
 	</menu>

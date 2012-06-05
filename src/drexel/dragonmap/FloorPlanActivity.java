@@ -11,6 +11,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -73,6 +74,13 @@ public class FloorPlanActivity extends Activity
 	        	floorpic.setImageBitmap( (Bitmap)gallery.getAdapter().getItem(position) );
 	        }
 	    });
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		Log.d("clean up", "aisle 12");
 	}
 }
 
