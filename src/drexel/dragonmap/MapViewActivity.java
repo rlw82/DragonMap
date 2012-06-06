@@ -33,7 +33,8 @@ public class MapViewActivity extends Activity {
 	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        
+    	super.onCreate(savedInstanceState);
        
 
         //people say you shouldn't do this, but it's the only way to force
