@@ -1,3 +1,6 @@
+//click on image ----> bring up new FloorView extends MapView, new FloorViewActivity
+//figure it out
+
 package drexel.dragonmap;
 
 import java.io.IOException;
@@ -7,16 +10,23 @@ import drexel.dragonmap.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -26,6 +36,8 @@ import android.widget.Toast;
 
 public class FloorPlanActivity extends Activity
 {
+	public static Bitmap selected = null;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -45,16 +57,22 @@ public class FloorPlanActivity extends Activity
 	    
 	    
 	    final TextView floorLabel = (TextView) findViewById(R.id.floor_label);
-	    floorLabel.setText( "Floor 1 of " + myPOI.getFloors() );
+	    floorLabel.setText( "1 of " + gallery.getAdapter().getCount() );
 	    
 	    
-	    final MapView floorpic = new MapView( getApplicationContext() );
+	    final ImageButton floorpic = new ImageButton( this );
     	// Make it the current view
 	    
 	    Bitmap first = (Bitmap)gallery.getAdapter().getItem(0);
+	    selected = first;
         floorpic.setImageBitmap( first );
-        floorpic.setMaxZoom(4f);
         floorpic.setAdjustViewBounds(true);
+        floorpic.setOnClickListener( new OnClickListener() {
+			public void onClick(View v){
+				Intent myIntent = new Intent(FloorPlanActivity.this, TouchImageViewActivity.class);
+	        	FloorPlanActivity.this.startActivity(myIntent);
+			}
+        });
         
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.floor_view);
         
@@ -66,17 +84,55 @@ public class FloorPlanActivity extends Activity
         
         rl.addView(floorpic, lp);
 
-	    
-        
-	    
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id)
 	        {
-	        	floorLabel.setText( "Floor " + (position + 1) + " of " + myPOI.getFloors() );
-	        	floorpic.setImageBitmap( (Bitmap)gallery.getAdapter().getItem(position) );
+	        	floorLabel.setText( "" + (position + 1) + " of " + gallery.getAdapter().getCount() );
+	        	selected = (Bitmap)gallery.getAdapter().getItem(position);
+	        	floorpic.setImageBitmap( selected );
 	        }
 	    });
 	}
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu); //bring up the menu
+        return true; //return true means process the click
+    }
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+    	Intent myIntent;
+        switch (item.getItemId()) {
+            case R.id.menuSearchButton:
+            	//manually load the Search bar/activity
+            	onSearchRequested();
+                return true;
+                
+            case R.id.menuListingButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(FloorPlanActivity.this, BrowseActivity.class);
+            	FloorPlanActivity.this.startActivity(myIntent);
+                return true;
+                
+            case R.id.mainMenuButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(FloorPlanActivity.this, MenuActivity.class);
+            	FloorPlanActivity.this.startActivity(myIntent);
+                return true;
+                
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
 
 
@@ -172,4 +228,5 @@ class ImageAdapter extends BaseAdapter
 
         return imageView;
     }
+   
 }

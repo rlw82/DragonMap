@@ -1,11 +1,6 @@
 //Hey look something with my name on it -Russell #LOL #PUNK #GETAREALJOB
 package drexel.dragonmap;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,16 +9,13 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
 
 public class MenuActivity extends Activity
 {
+	
 
 	/* A quick note about Android Activity lifecycles:
 	 * 	The onCreate method is only called one when the activity is actually
@@ -143,15 +135,9 @@ public class MenuActivity extends Activity
 	private OnClickListener aboutButtonListener = new OnClickListener()
 	{
 		public void onClick(View v){
-			AlertDialog alertDialog = new AlertDialog.Builder(MenuActivity.this).create();
-		    alertDialog.setTitle("About Us");  
-		    alertDialog.setMessage("Welcome to the DragonMap App!");  
-		    alertDialog.setButton("Close", new DialogInterface.OnClickListener() {  
-		      public void onClick(DialogInterface dialog, int which) {  
-		        return;  
-		      } });  
+			AlertDialog alertDialog = HyperlinkAlertDialog.create(MenuActivity.this);
 			alertDialog.show();
-	}
+		}
 	};
 	
 	/**  Default search is the same as in MapViewActivity, so the search bar will act the same when brought up

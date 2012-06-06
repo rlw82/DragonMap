@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:background="#FF001a5e"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        android:fadingEdge="none">
 
 		<RelativeLayout
 		    android:layout_width="fill_parent"
@@ -110,7 +111,7 @@
 			        android:layout_width="0dp"
 			        android:layout_height="wrap_content"
 			        android:layout_weight="1"
-			        android:text="View Floor Plans"
+			        android:text="View Images"
 			        android:padding="15dp"
 			        android:background="@drawable/roundedrectnoborder"
 			        android:textSize="15sp"

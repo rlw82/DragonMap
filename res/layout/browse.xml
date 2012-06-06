@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-	<LinearLayout android:layout_height="fill_parent"
-	              android:layout_width="fill_parent"
-	              android:orientation="vertical"
-	              xmlns:android="http://schemas.android.com/apk/res/android"
-	              android:background="@color/pale_blue">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FF001a5e" >
  
-     	<ExpandableListView android:id="@+id/android:list" 
-     	                    android:layout_height="fill_parent" 
-     	                    android:layout_width="fill_parent"
-     	                    android:background="@color/pale_blue" >
-     	                     
-			<TextView android:id="@+id/android:empty"
-		          android:layout_height="fill_parent"
-		          android:layout_width="fill_parent"
-		          android:text="@string/main_no_items"
-		          android:textColor="@color/gray_font">
-		          
-			    
-			</TextView>
-		</ExpandableListView>
-	</LinearLayout>
-    
+	<TextView  
+	    android:id="@+id/android:empty"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content"
+	    android:text="No items" />
+ 
+	<ExpandableListView 
+	    android:id="@+id/android:list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/bluefade"
+        android:divider="@color/pale_blue"
+        android:dividerHeight="1dp"
+        android:childDivider="@drawable/childdivider"
+        android:cacheColorHint="#00000000">
+ 	</ExpandableListView>
+ 	
+</LinearLayout>

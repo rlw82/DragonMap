@@ -17,6 +17,7 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -59,6 +60,14 @@ public class MapView extends ImageView {
     	super(context, attrs);
     	sharedConstructing(context);
     }
+    
+    // A documentation haiku, dedicated to the always beautiful Mark Koh
+    /*
+     * Null Pointers are shit
+     * OutOfMemorySucks too
+     * Mark Koh, I love you.
+     *                        --Russell Wiley <3
+     */
     
     private void sharedConstructing(Context context) {
     	super.setClickable(true);
