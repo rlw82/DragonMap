@@ -50,7 +50,7 @@ public class BrowseActivity extends ExpandableListActivity
                 BrowseActivity.this.startActivity(myIntent);
 			}
 		});
-        alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "View on Map", new DialogInterface.OnClickListener() {
+        alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "View Map", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
    				Intent myIntent = new Intent(BrowseActivity.this, MapViewActivity.class);
    				//send over the POI name
