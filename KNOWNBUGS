@@ -2,6 +2,8 @@
 	- "View on Map" (Mark)
 		App crashes when the POI it attempted to view on map.
 		Likely related to the bug below.
+		
+		FIXED 6/5/12
 
 	- MapViewActivity.java - Line 74/141  (Mark)
 		App crashes when attempting to set multiple content views
@@ -9,7 +11,12 @@
 		it seems to cause problems.  I think the fix is to "clean"
 		the current content view)
 		
+		FIXED 6/5/12
+		
 	- detailedview.xml - <LinearLayout>   (Mark)
 		Something in here causes the view to not scroll.  Also
 		let's make the page look nicer.  Other than that, I like!
 	
+		FIXED 6/5/12
+		
+		

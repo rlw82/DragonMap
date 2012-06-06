@@ -152,6 +152,7 @@ public class POIList
 			}
 			items.get(cats.indexOf(category)).add(poi.getName());
 		}
+		Collections.sort(cats);
 		this.categories = cats.toArray(new String[cats.size()]);
 		this.children = new String[categories.length][];
 		for (int i=0; i<categories.length; i++)
