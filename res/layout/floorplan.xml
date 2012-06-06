@@ -5,7 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#FF001a5e"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fadingEdge="none">
     
 	<RelativeLayout
 	    android:id="@+id/floor_view"
@@ -37,7 +38,7 @@
 	    android:id="@+id/floor_label"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="Floor x of y"
+	    android:text="x of y"
 	    android:textColor="#FFFFFFFF"
 	    android:layout_centerHorizontal="true"
 	    android:textSize="14sp"

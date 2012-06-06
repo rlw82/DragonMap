@@ -1,11 +1,6 @@
 //Hey look something with my name on it -Russell #LOL #PUNK #GETAREALJOB
 package drexel.dragonmap;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,16 +9,13 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
 
 public class MenuActivity extends Activity
 {
+	
 
 	/* A quick note about Android Activity lifecycles:
 	 * 	The onCreate method is only called one when the activity is actually
