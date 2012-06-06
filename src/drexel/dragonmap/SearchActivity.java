@@ -66,7 +66,7 @@ public class SearchActivity extends ListActivity
 		        SearchActivity.this.startActivity(myIntent);
 			}
 		});
-		alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Show on Map", new DialogInterface.OnClickListener() {
+		alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "View Map", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which)
 			{
 				Intent myIntent = new Intent(SearchActivity.this, MapViewActivity.class);
