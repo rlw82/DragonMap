@@ -108,10 +108,6 @@ public class MapViewActivity extends Activity {
             	MapViewActivity.this.startActivity(myIntent);
                 return true;
                 
-            case R.id.aboutButton:
-            	//todo: put shit in here
-            	return true;
-                
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -161,6 +157,11 @@ public class MapViewActivity extends Activity {
             myIntent.putExtra("POI", currentPOI);
         	MapViewActivity.this.startActivity(myIntent);
         }
+    	else
+    	{
+    		// will this work?
+    		finish();
+    	}
     }
     
     // end hackish, terrible code

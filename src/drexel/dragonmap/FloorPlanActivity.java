@@ -7,11 +7,15 @@ import drexel.dragonmap.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -46,7 +50,7 @@ public class FloorPlanActivity extends Activity
 	    
 	    
 	    final TextView floorLabel = (TextView) findViewById(R.id.floor_label);
-	    floorLabel.setText( "Floor 1 of " + myPOI.getFloors() );
+	    floorLabel.setText( "1 of " + gallery.getAdapter().getCount() );
 	    
 	    
 	    final MapView floorpic = new MapView( getApplicationContext() );
@@ -70,7 +74,7 @@ public class FloorPlanActivity extends Activity
 	    gallery.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView parent, View v, int position, long id)
 	        {
-	        	floorLabel.setText( "Floor " + (position + 1) + " of " + myPOI.getFloors() );
+	        	floorLabel.setText( "" + (position + 1) + " of " + gallery.getAdapter().getCount() );
 	        	floorpic.setImageBitmap( (Bitmap)gallery.getAdapter().getItem(position) );
 	        }
 	    });
@@ -80,8 +84,41 @@ public class FloorPlanActivity extends Activity
 	public void onDestroy()
 	{
 		super.onDestroy();
-		Log.d("clean up", "aisle 12");
 	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu); //bring up the menu
+        return true; //return true means process the click
+    }
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+    	Intent myIntent;
+        switch (item.getItemId()) {
+            case R.id.menuSearchButton:
+            	//manually load the Search bar/activity
+            	onSearchRequested();
+                return true;
+                
+            case R.id.menuListingButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(FloorPlanActivity.this, BrowseActivity.class);
+            	FloorPlanActivity.this.startActivity(myIntent);
+                return true;
+                
+            case R.id.mainMenuButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(FloorPlanActivity.this, MenuActivity.class);
+            	FloorPlanActivity.this.startActivity(myIntent);
+                return true;
+                
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
 
 
@@ -177,4 +214,5 @@ class ImageAdapter extends BaseAdapter
 
         return imageView;
     }
+   
 }

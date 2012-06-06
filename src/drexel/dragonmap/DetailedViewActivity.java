@@ -7,6 +7,9 @@ import drexel.dragonmap.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,6 +68,40 @@ public class DetailedViewActivity extends Activity {
                 DetailedViewActivity.this.startActivity(myIntent);
             }
         });
+        }
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu); //bring up the menu
+        return true; //return true means process the click
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+    	Intent myIntent;
+        switch (item.getItemId()) {
+            case R.id.menuSearchButton:
+            	//manually load the Search bar/activity
+            	onSearchRequested();
+                return true;
+                
+            case R.id.menuListingButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(DetailedViewActivity.this, BrowseActivity.class);
+            	DetailedViewActivity.this.startActivity(myIntent);
+                return true;
+                
+            case R.id.mainMenuButton:
+            	//start the BrowseActivity class
+            	myIntent = new Intent(DetailedViewActivity.this, MenuActivity.class);
+            	DetailedViewActivity.this.startActivity(myIntent);
+                return true;
+                
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
