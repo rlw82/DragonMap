@@ -3,12 +3,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="#FF001a5e" >
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@drawable/bluefade"
+        android:divider="@color/pale_blue"
+        android:dividerHeight="1dp"
+        android:childDivider="@drawable/childdivider"
+        android:cacheColorHint="#00000000"
+        >
     </ListView>
 
 </LinearLayout>
