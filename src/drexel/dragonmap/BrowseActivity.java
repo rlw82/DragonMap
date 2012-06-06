@@ -4,7 +4,11 @@ import android.app.AlertDialog;
 import android.app.ExpandableListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +25,13 @@ public class BrowseActivity extends ExpandableListActivity
 
     public void onCreate(Bundle savedInstanceState)
     {
-        try
-        {
-             super.onCreate(savedInstanceState);
-             setContentView(R.layout.browse);
-             
-             myAdapter = new MyExpandableListAdapter();
-             setListAdapter(myAdapter);
-             getExpandableListView().setOnChildClickListener(this);
- 
- 
-        }
-        	catch(Exception e){}
+
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.browse);
+         
+         myAdapter = new MyExpandableListAdapter();
+         setListAdapter(myAdapter);
+         getExpandableListView().setOnChildClickListener(this);
     }
     
     @Override
@@ -71,14 +70,6 @@ public class BrowseActivity extends ExpandableListActivity
         return true;
     }
  
-    /* This function is called on expansion of the group */
-    public void  onGroupExpand  (int groupPosition) {
-        try{
-             System.out.println("Group exapanding Listener => groupPosition = " + groupPosition);
-        }catch(Exception e){
-            System.out.println(" groupPosition Errrr +++ " + e.getMessage());
-        }
-    }
 
 
 	public class MyExpandableListAdapter extends BaseExpandableListAdapter {
@@ -107,18 +98,25 @@ public class BrowseActivity extends ExpandableListActivity
 	    }
 	
 	    public TextView getGenericView() {
-	        // Layout parameters for the ExpandableListView
-	        AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-	                ViewGroup.LayoutParams.MATCH_PARENT, 64);
-	
-	        TextView textView = new TextView(BrowseActivity.this);
-	        textView.setLayoutParams(lp);
-	        // Center the text vertically
-	        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-	        // Set the text starting position
-	        textView.setPadding(36, 0, 0, 0);
-	        return textView;
+            // Layout parameters for the ExpandableListView
+            AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
+                    ViewGroup.LayoutParams.FILL_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+ 
+            TextView textView = new TextView(BrowseActivity.this);
+            textView.setLayoutParams(lp);
+            
+            textView.setPadding(dpToPx(50), dpToPx(20), 0, dpToPx(20));
+            return textView;
+        }
+	    
+	    public int dpToPx(float n)
+	    {
+	    	Resources r = getResources();
+	    	float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, r.getDisplayMetrics());
+	    	return (int) ( px + .5 );
 	    }
+
 	
 	    public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
 	            View convertView, ViewGroup parent) {

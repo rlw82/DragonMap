@@ -8,8 +8,6 @@ package drexel.dragonmap;
  * 
  */
 
-import drexel.dragonmap.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
