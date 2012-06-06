@@ -2,6 +2,11 @@
 <resources>
     <string name="app_name">DragonMap</string>
     <string name="main_no_items">No items</string>
+    <string name="dialog_title">About Us</string>
+    <string name="dialog_message">\nWelcome to the Drexel DragonMap App, 
+        created by Drew Banin, Mark Koh, and Russell Wiley. Version 1.0.0\nTo view more info
+        visit http://DragonMap.markkoh.net\n</string>
+    <string name="dialog_action_dismiss">Close</string>
     <color name="pale_blue">#FF84a3e1</color>
     <color name="gray_font">#FF343434</color>
 </resources>

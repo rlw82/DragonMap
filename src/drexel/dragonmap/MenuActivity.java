@@ -135,15 +135,9 @@ public class MenuActivity extends Activity
 	private OnClickListener aboutButtonListener = new OnClickListener()
 	{
 		public void onClick(View v){
-			AlertDialog alertDialog = new AlertDialog.Builder(MenuActivity.this).create();
-		    alertDialog.setTitle("About Us");  
-		    alertDialog.setMessage("Welcome to the DragonMap App!");  
-		    alertDialog.setButton("Close", new DialogInterface.OnClickListener() {  
-		      public void onClick(DialogInterface dialog, int which) {  
-		        return;  
-		      } });  
+			AlertDialog alertDialog = HyperlinkAlertDialog.create(MenuActivity.this);
 			alertDialog.show();
-	}
+		}
 	};
 	
 	/**  Default search is the same as in MapViewActivity, so the search bar will act the same when brought up
