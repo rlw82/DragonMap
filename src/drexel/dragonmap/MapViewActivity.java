@@ -185,6 +185,11 @@ public class MapViewActivity extends Activity {
     
     // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview
     public void dropPin (Bitmap mapImg, Bitmap pinImg, float left, float top) {
+    	// Convert the "left" and "top" values from percentages to points
+        // and adjust the pin so the tip is on the given point
+    	left = (left * mapImg.getWidth()) - (pinImg.getWidth()/2);
+        top = (top * mapImg.getHeight()) - (pinImg.getHeight());
+        
     	// Initialize a MapView and merge the map and pin
     	MapView img = new MapView(this);    	
     	Bitmap mapPinImage = getBitmapOverlay(mapImg,pinImg,left,top);
@@ -192,6 +197,7 @@ public class MapViewActivity extends Activity {
     	// Update the current view with the new bitmap
         img.setImageBitmap(mapPinImage);
         img.setMaxZoom(4f);
+        // TODO: Call the centerPoint function on the pin position.
         setContentView(img);
     }
     
@@ -202,10 +208,6 @@ public class MapViewActivity extends Activity {
         Canvas canvas = new Canvas(bmOverlay);    
         // Draw bmp1 (map) onto the canvas
         canvas.drawBitmap(bmp1, 0, 0, null);
-        // Convert the "left" and "top" values from percentages to points
-        // and adjust the pin so the tip is on the given point
-        left = (left * bmp1.getWidth()) - (bmp2.getWidth()/2);
-        top = (top * bmp1.getHeight()) - (bmp2.getHeight());
         // Draw bmp 2 (pin) onto the canvas at (left,top) and return
         canvas.drawBitmap(bmp2, left, top, null);
         return bmOverlay;

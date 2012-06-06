@@ -224,6 +224,18 @@ public class MapView extends ImageView {
     	maxScale = x;
     }
     
+    /**
+     * centerPoint translates the matrix center around point (x,y)
+     * @param x The x point to center around
+     * @param y The y point to center around
+     */
+    public void centerPoint(float x, float y)
+    {
+    	float deltaX = (float)1.0; // This should be the amount to translate the matrix horizontally by
+    	float deltaY = (float)1.0; // This should be the amount to translate the matrix vertically by
+    	matrix.postTranslate(deltaX, deltaY);
+    }
+    
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
     	@Override
     	public boolean onScaleBegin(ScaleGestureDetector detector) {
