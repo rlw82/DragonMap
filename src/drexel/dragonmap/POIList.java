@@ -71,14 +71,14 @@ public class POIList
 			{
 				String dir = "floor_plans/" + building; 
 				String[] floorImages = assets.list(dir);
-				String POIName = null;
+				String[] POINames = null;
 				InputStream is = assets.open(dir + "/ref.txt");
 				try
 				{
 					int size = is.available(); 
 					byte[] buffer = new byte[size]; 
 					is.read(buffer); 
-					POIName = new String(buffer); 
+					POINames = (new String(buffer)).split("\n"); 
 				}
 				catch (IOException e)
 				{
@@ -92,25 +92,27 @@ public class POIList
 				}
 				//POIName is our POI's ID
 				//floorImages is a list of image files
-				POI myPOI = this.getPOIByName(POIName);
-				
-				FloorList myFloorList = new FloorList();
-				for (String img: floorImages)
+				for (String each: POINames)
 				{
-					try
+					POI myPOI = this.getPOIByName(each.trim());
+					FloorList myFloorList = new FloorList();
+					for (String img: floorImages)
 					{
-						Floor newFloor = new Floor();
-						newFloor.setFloorNum( Integer.parseInt( img.split("\\.")[0] ) );
-						newFloor.setImageSrc(dir + "/" + img);
-						myFloorList.addFloor( newFloor );
+						try
+						{
+							Floor newFloor = new Floor();
+							newFloor.setFloorNum( Integer.parseInt( img.split("\\.")[0] ) );
+							newFloor.setImageSrc(dir + "/" + img);
+							myFloorList.addFloor( newFloor );
+						}
+						catch (NumberFormatException e)
+						{
+							// file is not [num].ext, so we'll ignore it
+							continue;
+						}
 					}
-					catch (NumberFormatException e)
-					{
-						// file is not [num].ext, so we'll ignore it
-						continue;
-					}
+					myPOI.setFloorList(myFloorList);
 				}
-				myPOI.setFloorList(myFloorList);
 			}
 		}
 		catch (IOException e)
