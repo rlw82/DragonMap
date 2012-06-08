@@ -137,6 +137,9 @@ public class POIList
 	
 	/* I don't know what the word efficiency means. You can tell, right?
 	 * 
+	 * Please, please forgive me. This is god-awful, I'm fully aware. I'll
+	 * clean it up after finals!!! I promise!!!
+	 * 
 	 */
 	private void parseData()
 	{

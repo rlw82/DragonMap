@@ -60,7 +60,9 @@
                 android:value=".SearchActivity" />
         </activity>
         
-        <activity android:name="drexel.dragonmap.FloorPlanActivity"></activity>
+        <activity android:name="drexel.dragonmap.FloorPlanActivity"
+                  android:screenOrientation="portrait">
+        </activity>
         
         <activity android:name="drexel.dragonmap.TouchImageViewActivity"
                   android:screenOrientation="landscape">
