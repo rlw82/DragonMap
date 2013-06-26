@@ -1,6 +1,5 @@
 ![DragonMap Logo](/rlw82/DragonMap/raw/master/res/drawable/menuicon.png)
 
-
 DragonMap
 ----------
 *Because no one should ever get lost in Main again.*
@@ -14,7 +13,7 @@ DragonMap is being actively developed by:
 
      Mark Koh - Programming, Design
 
-     Drew Banin - Programming, R & D
+     Drew Banin - Programming, Design
 
      Russell Wiley - Programming, Documentation
 

@@ -16,6 +16,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import android.util.Log;
+
 
 /*
  * points of interest class
@@ -43,6 +45,7 @@ import org.json.simple.JSONValue;
  */
 public class POI
 {
+	private Long ID_;
 	private String name_;
 	private String description_;
 	private ArrayList<String> keywords_ = new ArrayList<String>();
@@ -58,9 +61,10 @@ public class POI
 	/*
 	 * Constructor with all arguments given.
 	 */
-	public POI(String name, String description, ArrayList<String> keywords, String category,
+	public POI(long ID, String name, String description, ArrayList<String> keywords, String category,
 			   int floors, String address, double x, double y, double w, double h)
 	{
+		this.ID_ = ID;
 		this.name_ = name;
 		this.description_ = description;
 		this.keywords_ = keywords;
@@ -79,9 +83,10 @@ public class POI
 	 */
 	public POI()
 	{
+		this.ID_ = 0L;
 		this.name_ = "";
 		this.description_ = "";
-		this.keywords_ = null;
+		this.keywords_ = new ArrayList<String>();
 		this.floors_  = 0;
 		this.address_ = "";
 		this.x_ = 0;
@@ -93,6 +98,11 @@ public class POI
 
 	
 //-----Setters---------------------------------------------------------
+	public void setID( long ID )
+	{
+		this.ID_ = ID;
+	}
+	
 	public void setName(String name)
 	{
 		this.name_ = name;
@@ -158,6 +168,11 @@ public class POI
 	}
 
 //-----Getters---------------------------------------------------------
+	public long getID()
+	{
+		return ID_;
+	}
+	
 	public String getName()
 	{
 		return this.name_;
@@ -205,7 +220,7 @@ public class POI
 	
 	public String getCategory()
 	{
-		return category_;
+		return this.category_;
 	}
 
 
@@ -227,7 +242,7 @@ public class POI
 	//for debugging purposes, maybe
 	public String toLongString()
 	{
-		return "Name: " + this.name_ + "\n" +
+		return " Name: " + this.name_ + ", " + this.ID_ + "\n" +
 				"    Description: " + this.description_ + "\n" +
 				"    Keywords: " + this.keywords_.toString() + "\n" +
 				"    Floors: " + this.floors_ + "\n" +
@@ -255,6 +270,7 @@ public class POI
 	public String toJSONString()
 	{
 		JSONObject obj = new JSONObject();
+		obj.put("ID", ID_);
 		obj.put("name", name_);
 		obj.put("description", description_);
 		JSONArray keys = new JSONArray();
@@ -275,6 +291,7 @@ public class POI
 	public void fromJSON(String JSON)
 	{
 		JSONObject obj = (JSONObject)JSONValue.parse(JSON);
+		this.ID_ = (Long)obj.get("ID");
 		this.name_ = (String)obj.get("name");
 		JSONArray keywords = (JSONArray)obj.get("keywords");
 		this.keywords_ = (ArrayList<String>)keywords;
@@ -302,7 +319,6 @@ public class POI
 			found = true;
 		else
 			found = false;
-		
 		return found;
 	}
 	

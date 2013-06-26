@@ -66,7 +66,7 @@ public class MapView extends ImageView {
      * Null Pointers are shit
      * OutOfMemorySucks too
      * Mark Koh, I love you.
-     *                        --Russell Wiley <3
+     *                        --Drew Banin
      */
     
     private void sharedConstructing(Context context) {
@@ -179,7 +179,7 @@ public class MapView extends ImageView {
     	// Hey Mark! This line finds the first POI that contains the point (x, y) passed
     	// to this method. There might be overlapping touch rectangles (though there 
     	// shouldn't be). 
-    	final POI clicked = DBAccessor.getInstance().getData().getFirstContained(x, y);
+    	final POI clicked = ResourceManager.getPOIs().getFirstContained(x, y);
     	if (clicked == null)
     	{
     		//didn't click a POI
@@ -194,16 +194,15 @@ public class MapView extends ImageView {
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "View Info", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which) {
        				Intent myIntent = new Intent(getContext(), DetailedViewActivity.class);
-       				//send over the POI name
-                    myIntent.putExtra("POI", clicked.getName());
+       				//send over the POI ID
+                    myIntent.putExtra("POI", clicked.getID());
                     getContext().startActivity(myIntent);
     			}
     		});
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Close", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which) {
     				//do nothing
-    				//i wonder if i can make the onClickListener null
-    				//NullPointerException? who knows
+    				return;
     			}
     		});
             alertDialog.show();	

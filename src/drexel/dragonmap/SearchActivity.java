@@ -29,7 +29,6 @@ public class SearchActivity extends ListActivity
 	{
 		super.onCreate(savedInstanceState);       
 		setContentView(R.layout.search);
-		//setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //can be used to force portrait. undesirable? 
 		
 		Intent intent = getIntent();
 	    if (Intent.ACTION_SEARCH.equals(intent.getAction()))
@@ -43,7 +42,7 @@ public class SearchActivity extends ListActivity
 	
 	public ArrayAdapter<POI> search(String query)
 	{
-		POIList POIs = DBAccessor.getInstance().getData();
+		POIList POIs = ResourceManager.getPOIs();
 		matched_ = POIs.find(query);
 		ArrayAdapter<POI> adapter = new ArrayAdapter<POI>(this, android.R.layout.simple_list_item_1, matched_);
         return adapter;

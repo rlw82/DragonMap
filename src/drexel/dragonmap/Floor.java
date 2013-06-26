@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  * 
  * each POI will have a FloorList field, which will be a list of Floors
  * 
- * -Floor number (starts at 1 for first floor)
+ * -Floor label: can be a floor number (1, 4, etc) or text (basement, ground, etc)
  * -Image source
  * 
  * we're not going to store an image because allocating all of those pictures
@@ -16,30 +16,31 @@ import android.graphics.Bitmap;
 
 public class Floor
 {
-	private int floorNum;
+	//The label to display along with this floor
+	private String floorLabel;
+	//The path to this image
 	private String imageSrc;
 	
-	public Floor(int floorNum, String imageSrc)
+	public Floor(String floorLabel, String imageSrc)
 	{
-		this.floorNum = floorNum;
+		this.floorLabel = floorLabel;
 		this.imageSrc = imageSrc;
 	}
-	
-	
+
 	public Floor()
 	{
-		this.floorNum = 0;
+		this.floorLabel = "";
 		this.imageSrc = "";
 	}
 	
-	public int getFloorNum()
+	public String getFloorLabel()
 	{
-		return floorNum;
+		return floorLabel;
 	}
 	
-	public void setFloorNum(int n)
+	public void setFloorLabel(String s)
 	{
-		floorNum = n;
+		floorLabel = s;
 	}
 	
 	public String getImageSrc()
@@ -52,11 +53,9 @@ public class Floor
 		imageSrc = s;
 	}
 	
+	//TODO: Figure out what I put this here for...
 	public Bitmap getBitmap()
 	{
 		return null;
 	}
-
-
-
 }
