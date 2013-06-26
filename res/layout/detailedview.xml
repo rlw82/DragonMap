@@ -25,7 +25,7 @@
 		        android:layout_marginLeft="15dp"
 		        android:layout_marginRight="15dp"
 		        android:layout_centerHorizontal="true"
-		        android:background="@drawable/glass_button"
+		        android:background="@drawable/roundedrectnoborder"
 		        android:textColor="@color/gray_font"
 		        android:padding="10dp"
 		        android:text="POI"
@@ -100,7 +100,7 @@
 			        android:text="View On Map"
 			        android:padding="15dp"
 			        android:layout_marginRight="10dp"
-			        android:background="@drawable/glass_button"
+			        android:background="@drawable/roundedrectnoborder"
 			        android:textSize="15sp"
 			        />
 			    
@@ -113,7 +113,7 @@
 			        android:layout_weight="1"
 			        android:text="View Floor Plans"
 			        android:padding="15dp"
-			        android:background="@drawable/glass_button"
+			        android:background="@drawable/roundedrectnoborder"
 			        android:textSize="15sp"
 			        />
 		    

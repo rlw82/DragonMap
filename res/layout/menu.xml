@@ -34,7 +34,7 @@
 		    android:layout_centerHorizontal="true"
 		    android:layout_below="@id/menu_logo"
 		    android:layout_marginBottom="20dip"
-		    android:background="@drawable/glass_button"
+		    android:background="@drawable/roundedrectnoborder"
 		    android:textSize="18sp"
 			/>
 		
@@ -47,7 +47,7 @@
 		    android:layout_centerHorizontal="true"
 		    android:layout_below="@id/view_map"
 		    android:layout_marginBottom="20dip"
-		    android:background="@drawable/glass_button"
+		    android:background="@drawable/roundedrectnoborder"
 		    android:textSize="18sp"
 		    />
 		
@@ -59,7 +59,7 @@
 		    android:layout_centerHorizontal="true"
 		    android:layout_below="@id/search"
 		    android:layout_marginBottom="20dip"
-		    android:background="@drawable/glass_button"
+		    android:background="@drawable/roundedrectnoborder"
 		    android:textSize="18sp"
 		    />
 		
@@ -70,7 +70,7 @@
 		    android:text="About"
 		    android:layout_centerInParent="true"
 		    android:layout_below="@id/directory"
-		    android:background="@drawable/glass_button"
+		    android:background="@drawable/roundedrectnoborder"
 		    android:textSize="20sp"
 		    android:layout_marginBottom="18dip"
 		    />
@@ -80,8 +80,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_centerInParent="true"
 		    android:layout_below="@id/about"
-		    android:text="Copyright 2012
-Mark Koh, Drew Banin, &amp; Russell Wiley"
+		    android:text="Copyright 2012\nMark Koh, Drew Banin, &amp; Russell Wiley"
 		    android:textColor="#FFFFFFFF"
 		    android:gravity="center_horizontal"
 		    android:textSize="12dp"

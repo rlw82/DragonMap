@@ -15,6 +15,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,7 +29,9 @@ import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class FloorPlanActivity extends Activity
@@ -41,15 +44,15 @@ public class FloorPlanActivity extends Activity
 	    
 	    setContentView(R.layout.floorplan);
 	    
-	    long POI_ID = getIntent().getLongExtra("POI", -1L);
-	    POI myPOI = ResourceManager.getPOIs().getPOIByID(POI_ID);
+	    String POIName = getIntent().getStringExtra("POI");
+	    final POI myPOI = DBAccessor.getInstance().getData().getPOIByName(POIName);
 	    
 	    
 	    final Gallery gallery = (Gallery) findViewById(R.id.gallery);
 	    gallery.setAdapter(new ImageAdapter(this, myPOI.getFloorList().getImageSrcs()));
 	    
 	    TextView buildingTitle = (TextView) findViewById(R.id.floor_title);
-	    buildingTitle.setText( myPOI.getName() );
+	    buildingTitle.setText( POIName );
 	    
 	    
 	    

@@ -1,4 +1,1 @@
-POIs:5
-1.png:Floor 1
-2.png:Garden Level Hallway
-3.png:Garden Level Classrooms
+One Drexel Plaza

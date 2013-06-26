@@ -4,8 +4,6 @@ package drexel.dragonmap;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
-import java.util.HashMap;
 
 import android.content.res.AssetManager;
 import android.util.Log;
@@ -14,22 +12,13 @@ import android.util.Log;
 public class POIList
 {
 
-	//list_ contains the list of POIS
-	//categoryMao_ is a map of categories onto POI names for the browse feature
-	//categories_ is for efficiency's sake; use when propagating the Browse activity
-	private ArrayList<POI> list_;
-	private CategoryManager catMan; //SUPERHERO KITTENS! MEEEOOOW!
-	private POI NOT_FOUND_POI; //For if a POI can't be found
+	ArrayList<POI> list_;
+	String categories[] = null;
+	String children[][] = null;
 	
 	public POIList()
 	{
 		list_ = new ArrayList<POI>();
-		catMan = null;
-		//Show some apologetic remarks
-		NOT_FOUND_POI = new POI();
-		NOT_FOUND_POI.setName("Not found");
-		NOT_FOUND_POI.setDescription("Oops! Something went wrong!");
-		NOT_FOUND_POI.setID( -1L );
 	}
 	
 	public POIList(String fname, AssetManager assets)
@@ -37,7 +26,8 @@ public class POIList
 		this();
 		load(fname, assets);
 		genFloorPlans(assets);
-		catMan = new CategoryManager( list_ );
+		
+		parseData();
 	}
 	
 	public ArrayList<POI> getList()
@@ -45,88 +35,91 @@ public class POIList
 		return list_;
 	}
 	
-	
-	public void load( String fname, AssetManager assets )
+	//TODO: handle error in a better way!
+	public void load(String fname, AssetManager assets)
 	{
-		Scanner scanner = null;
 		try
 		{
-			scanner = new Scanner( assets.open( fname ) );
+			InputStream is = assets.open(fname);
+			int size = is.available(); 
+			byte[] buffer = new byte[size]; 
+			is.read(buffer); 
+			is.close(); 
+			String text = new String(buffer); 
+			String[] lines = text.split("\n");
+			  
+			for (String line: lines)
+			{
+				POI newObj = new POI();
+				newObj.fromJSON(line);				
+				list_.add(newObj);
+			}
 		}
-		catch ( IOException e )
+		catch (IOException e)
 		{
-			//file couldn't be opened? I guess we handle this by not loading POIs.
-			return;
-		}
-		
-		while ( scanner.hasNextLine() )
-		{
-			  String line = scanner.nextLine();
-			  POI newObj = new POI();
-			  newObj.fromJSON( line );
-			  list_.add( newObj );
+			Log.e("poilist", e.toString());
 		}
 	}
-
 	
 	public void genFloorPlans(AssetManager assets)
 	{
-		String[] buildings = null;
 		try
 		{
-			buildings = assets.list("floor_plans");
-		}
-		catch( IOException e )
-		{
-			return; //No floor plans? No worries! ( I suck at coding )
-		}
-		
-		for (String building: buildings)
-		{
-			String dir = "floor_plans/" + building;
-			Scanner scanner = null;
-			try
-			{
-				scanner = new Scanner( assets.open( dir + "/ref.txt" ) );
-			}
-			catch ( IOException e )
-			{
-				continue;
-			}
+			String[] buildings = assets.list("floor_plans");
 			
-			//save first line - contains relevant POIs
-			String relevantStr = scanner.nextLine().split( ":" )[1];
-			FloorList myFloorList = new FloorList();
-			while ( scanner.hasNextLine() )
+			for (String building: buildings)
 			{
-				String[] fileParts = scanner.nextLine().split( ":" );
-				String fileSrc = fileParts[0];
-				String fileDescription = fileParts[1];							
-				Floor newFloor = new Floor( fileDescription, dir + "/" + fileSrc );
-				myFloorList.addFloor( newFloor );
-			}
-			for ( String POI_ID: relevantStr.split( "," ) )
-			{
-				getPOIByID( Integer.parseInt( POI_ID) ).setFloorList( myFloorList );
-				//TODO: What happens if two different FloorLists pertain to 1 POI????
+				String dir = "floor_plans/" + building; 
+				String[] floorImages = assets.list(dir);
+				String[] POINames = null;
+				InputStream is = assets.open(dir + "/ref.txt");
+				try
+				{
+					int size = is.available(); 
+					byte[] buffer = new byte[size]; 
+					is.read(buffer); 
+					POINames = (new String(buffer)).split("\n"); 
+				}
+				catch (IOException e)
+				{
+					//couldn't open reference file, just ignore it
+					//(not a floor plan directory)
+					continue;
+				}
+				finally
+				{
+					is.close(); 
+				}
+				//POIName is our POI's ID
+				//floorImages is a list of image files
+				for (String each: POINames)
+				{
+					POI myPOI = this.getPOIByName(each.trim());
+					FloorList myFloorList = new FloorList();
+					for (String img: floorImages)
+					{
+						try
+						{
+							Floor newFloor = new Floor();
+							newFloor.setFloorNum( Integer.parseInt( img.split("\\.")[0] ) );
+							newFloor.setImageSrc(dir + "/" + img);
+							myFloorList.addFloor( newFloor );
+						}
+						catch (NumberFormatException e)
+						{
+							// file is not [num].ext, so we'll ignore it
+							continue;
+						}
+					}
+					myPOI.setFloorList(myFloorList);
+				}
 			}
 		}
-	}
-	
-	public CategoryManager getCategoryManager()
-	{
-		return catMan;
-	}
-
-	
-	public POI getPOIByID( long ID )
-	{
-		for ( POI poi: list_ )
+		catch (IOException e)
 		{
-			if ( poi.getID() == ID )
-				return poi;
+			//
+			Log.e("floorplans", e.toString());
 		}
-		return NOT_FOUND_POI;
 	}
 	
 	public ArrayList<POI> find(String match)
@@ -142,6 +135,58 @@ public class POIList
 		return matched;
 	}
 	
+	/* I don't know what the word efficiency means. You can tell, right?
+	 * 
+	 * Please, please forgive me. This is god-awful, I'm fully aware. I'll
+	 * clean it up after finals!!! I promise!!!
+	 * 
+	 */
+	private void parseData()
+	{
+		//could be a hashmap, but we're converting to arrays for android anyway, so why bother
+		ArrayList<String> cats = new ArrayList<String>();
+		ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
+		for (POI poi: list_)
+		{
+			String category = poi.getCategory();
+			if (!cats.contains(category))
+			{
+				cats.add(category);
+				if (cats.size() > items.size())
+					items.add(new ArrayList<String>());
+			}
+			items.get(cats.indexOf(category)).add(poi.getName());
+		}
+		this.categories = cats.toArray(new String[cats.size()]);
+		this.children = new String[categories.length][];
+		for (int i=0; i<categories.length; i++)
+		{
+			this.children[i] = items.get(i).toArray(new String[items.get(i).size()]);
+		}
+	}
+	
+	public String[] getCategories()
+	{
+		return this.categories;
+	}
+	
+	public String[][] getChildren()
+	{
+		return this.children;
+	}
+	
+	public POI getPOIByName(String name)
+	{
+		for (POI item: list_)
+		{
+			if (item.getName().equals(name))
+			{
+				return item;
+			}
+		}
+		return null;
+	}
+	
 	public POI getFirstContained(float x, float y)
 	{
 		for (POI p: list_)
@@ -151,6 +196,8 @@ public class POIList
 		}
 		return null;
 	}
+
+	
 }
 
 

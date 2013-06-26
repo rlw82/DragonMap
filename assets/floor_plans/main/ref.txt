@@ -1,5 +1,4 @@
-POIs:6,7,8,9
-1.gif:Ground Floor
-2.gif:Floor 2
-3.gif:Floor 3
-4.gif:Floor 4
+Main Building
+Randell Hall
+Alumni Engineering Laboratories
+Curtis Hall

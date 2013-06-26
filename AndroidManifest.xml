@@ -6,6 +6,8 @@
     
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         
+                
+        
         <!-- MenuActivity is run when the app is started -->
         <activity android:name="drexel.dragonmap.MenuActivity"
                   android:label="@string/app_name"
@@ -64,9 +66,6 @@
         
         <activity android:name="drexel.dragonmap.TouchImageViewActivity"
                   android:screenOrientation="landscape">
-        </activity>
-        
-        <activity android:name="drexel.dragonmap.CreditsActivity">
         </activity>
 
 

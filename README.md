@@ -1,4 +1,5 @@
-![DragonMap Logo](https://raw.github.com/rlw82/DragonMap/master/res/drawable-hdpi/icon.png)
+![DragonMap Logo](/rlw82/DragonMap/raw/master/res/drawable/menuicon.png)
+
 
 DragonMap
 ----------
@@ -13,7 +14,7 @@ DragonMap is being actively developed by:
 
      Mark Koh - Programming, Design
 
-     Drew Banin - Programming, Design
+     Drew Banin - Programming, R & D
 
      Russell Wiley - Programming, Documentation
 

@@ -24,7 +24,7 @@ import android.view.MenuItem;
 public class MapViewActivity extends Activity {
 
 	
-	private long currentPOI = -1L;
+	private String currentPOI = null;
 	
 	/**
 	 * @param savedInstanceState This can contain an intent with the String name of a
@@ -35,21 +35,27 @@ public class MapViewActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         
     	super.onCreate(savedInstanceState);
+       
+
+        //people say you shouldn't do this, but it's the only way to force
+        //java to delete the now-out-of-scope Bitmaps from before to make
+        //room for the new ones
+        // System.gc(); //removed to re-fix outofmemoryerror
         
         //these are references, so we can repeatedly call this and it 
         //shouldn't chew up too much memory!
-        Bitmap mapImage = ResourceManager.getMap();
-        Bitmap pinImage = ResourceManager.getPin();
+        Bitmap mapImage = DBAccessor.getInstance().getMap();
+        Bitmap pinImage = DBAccessor.getInstance().getPin();
         
         resMap(mapImage);
         
-        long POI_ID = getIntent().getLongExtra("POI", -1L);
-        //POI_ID is null if no intent was passed (ie. just show the map)
-        if (POI_ID != -1L)
+        String POIName = getIntent().getStringExtra("POI");
+        //POIName is null if no intent was passed (ie. just show the map)
+        if (POIName != null)
         {
-        	currentPOI = POI_ID;
+        	currentPOI = POIName;
         	//pressed "view on map" thang, adjust accordingly
-        	POI myPOI = ResourceManager.getPOIs().getPOIByID(POI_ID);
+        	POI myPOI = DBAccessor.getInstance().getData().getPOIByName(POIName);
             double targetX = myPOI.getX() + ( myPOI.getWidth() / 2 );
             double targetY = myPOI.getY() + ( myPOI.getHeight() / 2 );
             
@@ -143,7 +149,7 @@ public class MapViewActivity extends Activity {
     @Override
     public void onBackPressed()
     {
-    	if (currentPOI != -1L)
+    	if (currentPOI != null)
         {
             Intent myIntent = new Intent(MapViewActivity.this, DetailedViewActivity.class);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -167,8 +173,7 @@ public class MapViewActivity extends Activity {
      * BitmapOverlay functionality
      */
     // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview
-    public void resMap (Bitmap mapImg)
-    {
+    public void resMap (Bitmap mapImg) {
     	// Initialize a MapView object from our map bitmap
     	MapView img = new MapView(this);
     	
@@ -179,8 +184,7 @@ public class MapViewActivity extends Activity {
     }
     
     // Drop a pinImg on the mapImg at point (left, top) and set it to the contentview
-    public void dropPin (Bitmap mapImg, Bitmap pinImg, float left, float top)
-    {
+    public void dropPin (Bitmap mapImg, Bitmap pinImg, float left, float top) {
     	// Convert the "left" and "top" values from percentages to points
         // and adjust the pin so the tip is on the given point
     	left = (left * mapImg.getWidth()) - (pinImg.getWidth()/2);
@@ -198,8 +202,7 @@ public class MapViewActivity extends Activity {
     }
     
     // Take two bitmaps and overlay bmp2 at (left,top) on bmp1
-    public static Bitmap getBitmapOverlay(Bitmap bmp1, Bitmap bmp2, float left, float top)
-    {
+    public static Bitmap getBitmapOverlay(Bitmap bmp1, Bitmap bmp2, float left, float top) {
         // Create a NEW bitmap and make a canvas out of it
     	Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(),  bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);    

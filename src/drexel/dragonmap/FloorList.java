@@ -3,11 +3,9 @@ package drexel.dragonmap;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/* This is an ArrayList of floors with some helper methods
- * 
- * Every POI has an attached FloorList which contains
- * a list of floors to associate with the POI.
- */
+import android.util.Log;
+
+/* An ArrayList of floors with some helper methods*/
 
 public class FloorList
 {
@@ -28,12 +26,16 @@ public class FloorList
 		return floors.get(i);
 	}
 	
+	public ArrayList<Floor> getFloors()
+	{
+		return floors;
+	}
+	
 	public int size()
 	{
 		return floors.size();
 	}
 	
-	//ImageAdapters require an array of image SRCs, so this facilitates that process
 	public String[] getImageSrcs()
 	{
 		ArrayList<String> imageSrcs = new ArrayList<String>();
